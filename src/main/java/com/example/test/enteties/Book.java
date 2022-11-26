@@ -10,23 +10,22 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ForeignKey
     @Column(name = "Id", nullable = false)
     private Long id;
 
-    @Column(name = "author", nullable = false, table = "255")
+    @Column(name = "author", nullable = false, length = 255)
     private String author;
 
-    @Column(name = "ISBM", nullable = false, table = "13")
+    @Column(name = "ISBM", nullable = false, length = 13)
     private String ISBM;
 
-    @Column(name = "title", nullable = false, table = "255")
+    @Column(name = "title", nullable = false, length = 255)
     private String title;
 
-    @Column(name = "year", nullable = false, table = "4", table = "255")
+    @Column(name = "year", nullable = false, length = 4)
     private String year;
 
-    @Column(name = "genre", nullable = false, table = "255")
+    @Column(name = "genre", nullable = false, length = 255)
     private String genre;
 
     @Column(name = "date", nullable = false)

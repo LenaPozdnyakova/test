@@ -1,10 +1,14 @@
 package com.example.test.enteties;
 
+import org.hibernate.mapping.Set;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Authors")
 public class Author {
+    @OneToMany(mappedBy = "author")
+    private Set<Book> books;
 
     @Id
 
@@ -13,10 +17,13 @@ public class Author {
     private Long id;
     @Column(name = "surname", nullable = false, length = 255)
     private String surname;
-    @Column(name = "name", nullable = false, table = "255")
+    @Column(name = "name", nullable = false, length = 255)
     private String name;
-    @Column(name="patronymic")
+    @Column(name="patronymic", length = 255)
     private String patronymic;
+
+    @OneToMany(mappedBy = "author")
+    private Set<Book> books;
 
 
     public void setId(Long id) {
