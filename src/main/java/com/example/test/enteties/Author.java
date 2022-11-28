@@ -1,17 +1,14 @@
 package com.example.test.enteties;
 
-import org.hibernate.mapping.Set;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Authors")
 public class Author {
-    @OneToMany(mappedBy = "author")
-    private Set<Book> books;
+
 
     @Id
-
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "Id", nullable = false, length = 255)
     private Long id;
@@ -23,7 +20,11 @@ public class Author {
     private String patronymic;
 
     @OneToMany(mappedBy = "author")
-    private Set<Book> books;
+    private List<Book> books;
+
+    public Author(List<Book> books) {
+        this.books = books;
+    }
 
 
     public void setId(Long id) {
