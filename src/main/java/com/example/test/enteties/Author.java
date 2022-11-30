@@ -1,12 +1,12 @@
 package com.example.test.enteties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "Authors")
 public class Author {
-
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,11 +19,11 @@ public class Author {
     @Column(name="patronymic", length = 255)
     private String patronymic;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Book> books;
 
-    public Author(List<Book> books) {
-        this.books = books;
+    public Author() {
+        this.books = new ArrayList<>();
     }
 
 
@@ -58,5 +58,13 @@ public class Author {
 
     public void setPatronymic(String patronymic) {
         this.patronymic = patronymic;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

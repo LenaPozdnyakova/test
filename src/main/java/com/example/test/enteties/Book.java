@@ -2,7 +2,8 @@ package com.example.test.enteties;
 
 
 import javax.persistence.*;
-import java.time.LocalTime;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "Books")
@@ -13,7 +14,7 @@ public class Book {
     @Column(name = "Id", nullable = false)
     private Long id;
 
-    @Column(name = "ISBM", nullable = false, length = 13)
+    @Column(name = "isbm", nullable = false, length = 13)
     private String ISBM;
 
     @Column(name = "title", nullable = false, length = 255)
@@ -25,11 +26,12 @@ public class Book {
     @Column(name = "genre", nullable = false, length = 255)
     private String genre;
 
-    @Column(name = "date", nullable = false)
-    private LocalTime date;
+    @Column(name = "date", columnDefinition = "DATE", nullable = false)
+
+    private LocalDate date;
 
     @ManyToOne
-    @JoinColumn(name = "authorId")
+    @JoinColumn(name = "author_id")
     private Author author;
 
 
@@ -74,11 +76,11 @@ public class Book {
         this.genre = genre;
     }
 
-    public LocalTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
