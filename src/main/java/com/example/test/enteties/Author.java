@@ -1,7 +1,6 @@
 package com.example.test.enteties;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,22 +18,25 @@ public class Author {
     @Column(name="patronymic", length = 255)
     private String patronymic;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Book> books;
+    public Author(){
 
-    public Author() {
-        this.books = new ArrayList<>();
     }
+    public Author(String surname, String name, String patronymic) {
+        this.surname = surname;
+        this.name = name;
+        this.patronymic = patronymic;
+    }
+
+    //public Author() {this.books = new ArrayList<>();}
 
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getId() {
-        return id;
-
-    }
+    public Long getId() {return id;}
 
     public String getSurname() {
         return surname;

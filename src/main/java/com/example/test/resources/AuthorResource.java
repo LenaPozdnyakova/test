@@ -27,6 +27,7 @@ public class AuthorResource {
     }
 
     @POST
+    @Path("/save")
     public Response addAuthor(Author author) {
         return Response.ok().entity(authorService.add(author)).build();
     }

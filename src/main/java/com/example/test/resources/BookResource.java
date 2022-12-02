@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 public class BookResource {
 
-    private BookService bookService;
+    private final BookService bookService;
     @Autowired
     public BookResource(BookService bookService) {
 
@@ -21,18 +21,13 @@ public class BookResource {
     }
 
     @GET
-    @Path("/find/ByAuthorId/{authorId}")
+    @Path("/find/byAuthorId/{authorId}")
     public Response findByAuthorId(@PathParam("authorId") Long authorId) {
         return Response.status(Response.Status.OK).entity(bookService.getAllByAuthorId(authorId)).build();
     }
 
-    @GET
-    @Path(value = "/all")
-    public String getAllBook() {
-        return "у нас все получилось";
-    }
-
     @POST
+    @Path("/save")
     public Response addBook(Book book) {
         return Response.ok().entity(bookService.add(book)).build();
     }
@@ -43,6 +38,12 @@ public class BookResource {
     public Response deleteById(@PathParam("id") Long id) {
         bookService.deleteById(id);
         return Response.status(Response.Status.OK).build();
+    }
+
+    @GET
+    @Path("/find/byTitle/{title}")
+    public Response findByTitle(@PathParam("title") String title) {
+        return Response.status(Response.Status.OK).entity(bookService.getAllByTitle(title)).build();
     }
 }
 

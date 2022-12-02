@@ -15,7 +15,7 @@ public class Book {
     private Long id;
 
     @Column(name = "isbm", nullable = false, length = 13)
-    private String ISBM;
+    private String isbm;
 
     @Column(name = "title", nullable = false, length = 255)
     private String title;
@@ -34,6 +34,17 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
 
+    public Book() {
+    }
+
+    public Book(String isbm, String title, String year, String genre, LocalDate date, Author author) {
+        this.isbm = isbm;
+        this.title = title;
+        this.year = year;
+        this.genre = genre;
+        this.date = date;
+        this.author = author;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -44,12 +55,12 @@ public class Book {
         return id;
     }
 
-    public String getISBM() {
-        return ISBM;
+    public String getIsbm() {
+        return isbm;
     }
 
-    public void setISBM(String ISBM) {
-        this.ISBM = ISBM;
+    public void setIsbm(String isbm) {
+        this.isbm = isbm;
     }
 
     public String getTitle() {
